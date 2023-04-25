@@ -7,7 +7,7 @@ MemoryDumper is a tool to create an encrypted memory dump of the lsass.exe proce
 - Visual Studio (or another C++ compiler)
 - Crypto++ library
 
-## How to Compile
+## How to compile
 
 1. Clone the repository or download the source files.
 2. Install the Crypto++ library: https://www.cryptopp.com/wiki/Visual_Studio
@@ -15,7 +15,7 @@ MemoryDumper is a tool to create an encrypted memory dump of the lsass.exe proce
 4. Set up the project to use the Crypto++ library.
 5. Compile the project.
 
-## How to Use
+## Usage
 
 1. Run the compiled MemoryDumper.exe with administrative privileges to create an encrypted memory dump of the lsass.exe process. The encrypted dump file will be saved as `encrypted_lsass.dmp` in the C:\Windows\tasks\ directory.
 
