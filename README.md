@@ -1,41 +1,56 @@
 # MemoryDumper
 
-MemoryDumper is a tool designed to dump the memory of a process using MiniDumpWriteDump, specifically LSASS. 
-It encrypts the resulting memory dump to evade antivirus detection and deletion of the written dump. 
+MemoryDumper is a tool to create an encrypted memory dump of the lsass.exe process and then decrypt it for further analysis. The project consists of two parts: `MemoryDumper.cpp`, which creates the encrypted memory dump, and `Decrypt.cpp`, which decrypts the encrypted dump file.
 
-*Note:* This tool is not designed to evade Endpoint Detection and Response (EDR) systems, as they are a different challenge. A new tool addressing EDRs is currently in development.
+## Prerequisites
 
-## Files
+- Visual Studio (or another C++ compiler)
+- Crypto++ library
 
-- `MemoryDumper.cpp`: This file is responsible for dumping the process memory and encrypting the memory dump.
-- `decrypt.cpp`: This file is responsible for decrypting the encrypted memory dump.
+## How to Compile
 
-## Usage
+1. Clone the repository or download the source files.
+2. Install the Crypto++ library: https://www.cryptopp.com/wiki/Visual_Studio
+3. Create a new Visual Studio project and add the `MemoryDumper.cpp` and `Decrypt.cpp` files.
+4. Set up the project to use the Crypto++ library.
+5. Compile the project.
 
-### MemoryDumper.exe
+## How to Use
 
-1. Compile the `MemoryDumper.cpp` file.
-2. Run `MemoryDumper.exe <process ID>` to dump and encrypt the memory of the specified process.
+1. Run the compiled MemoryDumper.exe with administrative privileges to create an encrypted memory dump of the lsass.exe process. The encrypted dump file will be saved as `encrypted_lsass.dmp` in the C:\Windows\tasks\ directory.
 
-### decrypt.exe
+2. To decrypt the encrypted memory dump, run the compiled Decrypt.exe and provide the path to the encrypted dump file as a command-line argument. The decrypted memory dump will be saved as `decrypted.dmp` in the same directory as Decrypt.exe.
 
-1. Compile the `decrypt.cpp` file.
-2. Run `decrypt.exe <path to encrypted file>` to decrypt the encrypted memory dump. The decrypted dump will be saved as `decrypted.dmp`.
+## How It Works
 
-## How it Works
+### MemoryDumper.cpp
 
-1. Obtain the process handle: MemoryDumper takes the process ID as an argument and opens a handle to the process using the OpenProcess function.
-2. Create a dump file: MemoryDumper creates a new file named "dump.dmp" using the CreateFileW function.
-3. Dump the process memory: The MiniDumpWriteDump function is used to write the process memory to the "dump.dmp" file.
-4. Encrypt the memory dump: After creating the memory dump, the tool encrypts the dump file using AES encryption with CBC mode. The Crypto++ library is used to perform the encryption. The key and initialization vector (IV) are hardcoded in the source code. The encrypted dump file is saved as "dump_encrypted.dmp".
-5. Delete the original memory dump: After the encryption is complete, the original memory dump file is deleted using the DeleteFileW function.
+1. The program starts by enabling the `SeDebugPrivilege` and checking if it's running as an elevated process. This is necessary to access the lsass.exe process and dump its memory.
 
-The `decrypt.exe` utility uses the same key and IV as the encryption process to decrypt the file.
+2. It creates a new file named `lsass.dmp` in the C:\Windows\tasks\ directory to store the memory dump.
 
-## Contributing
+3. The program searches for the lsass.exe process and retrieves its process ID.
 
-Contributions are welcome! If you have any ideas or improvements, please submit a pull request or open an issue to discuss the changes.
+4. It opens a handle to the lsass.exe process with `PROCESS_ALL_ACCESS` permission.
 
-## License
+5. The program loads the `Dbghelp.dll` library and retrieves the `MiniDumpWriteDump` function address.
 
-This project is licensed under the [MIT License](LICENSE). Please see the [LICENSE](LICENSE) file for details.
+6. The `MiniDumpWriteDump` function is called with the lsass.exe process handle, process ID, and dump file handle, which creates a full memory dump of the lsass.exe process.
+
+7. After creating the memory dump, the program encrypts it using the `EncFile` function, which utilizes the AES encryption algorithm with CBC mode. The encrypted dump is saved as `encrypted_lsass.dmp` in the C:\Windows\tasks\ directory.
+
+8. The original, unencrypted memory dump (`lsass.dmp`) is deleted.
+
+### Decrypt.cpp
+
+1. The program starts by checking if an input file is provided as a command-line argument. If not, it prints an error message and exits.
+
+2. It retrieves the wide command-line arguments using `CommandLineToArgvW` function.
+
+3. The key and initialization vector (IV) used for AES decryption are defined in the source code. These values should match the ones used in the MemoryDumper.cpp for encryption.
+
+4. The `Decrypt` function is called with the input file path, key, and IV. It reads the encrypted input file and decrypts it using the AES decryption algorithm with CBC mode. The decrypted data is written to a new file named `decrypted.dmp`.
+
+5. The memory allocated by `CommandLineToArgvW` is freed, and the program exits.
+
+The MemoryDumper and Decrypt programs work together to create an encrypted memory dump of the lsass.exe process and then decrypt it for further analysis. The encryption and decryption processes use the AES algorithm with CBC mode to ensure the confidentiality of the memory dump.
