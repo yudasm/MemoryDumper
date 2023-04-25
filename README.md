@@ -55,6 +55,15 @@ MemoryDumper is a tool to create an encrypted memory dump of the lsass.exe proce
 
 The MemoryDumper and Decrypt programs work together to create an encrypted memory dump of the lsass.exe process and then decrypt it for further analysis. The encryption and decryption processes use the AES algorithm with CBC mode to ensure the confidentiality of the memory dump.
 
+## Proof of Concept
+
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=F_XO3SCewqo">
+    <img src="https://img.youtube.com/vi/YOUR_VIDEO_ID/0.jpg" alt="IMAGE_DESCRIPTION">
+  </a>
+</div>
+
+
 ## Contributing
 
 Contributions are welcome! If you have any ideas or improvements, please submit a pull request or open an issue to discuss the changes.
