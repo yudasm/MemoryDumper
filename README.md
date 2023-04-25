@@ -59,7 +59,7 @@ The MemoryDumper and Decrypt programs work together to create an encrypted memor
 
 <div align="center">
   <a href="https://www.youtube.com/watch?v=F_XO3SCewqo">
-    <img src="https://img.youtube.com/vi/YOUR_VIDEO_ID/0.jpg" alt="IMAGE_DESCRIPTION">
+    <img src="https://img.youtube.com/vi/F_XO3SCewqo/0.jpg" alt="IMAGE_DESCRIPTION">
   </a>
 </div>
 
