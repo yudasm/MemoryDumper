@@ -21,7 +21,7 @@ At the time of release, the tool is able to dump the LSASS memory with Windows D
 
 ## Usage
 
-1. Run the compiled MemoryDumper.exe with administrative privileges to create an encrypted memory dump of the lsass.exe process. The encrypted dump file will be saved as `encrypted_lsass.dmp` in the *C:\Windows\tasks\* directory.
+1. Run the compiled MemoryDumper.exe with administrative privileges to create an encrypted memory dump of the lsass.exe process. The encrypted dump file will be saved as `encrypted_lsass.dmp` in the **C:\Windows\tasks\** directory.
 
 2. To decrypt the encrypted memory dump, run the compiled Decrypt.exe and provide the path to the encrypted dump file as a command-line argument. The decrypted memory dump will be saved as `decrypted.dmp` in the same directory as Decrypt.exe.
 
