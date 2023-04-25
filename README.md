@@ -2,6 +2,10 @@
 
 MemoryDumper is a tool to create an encrypted memory dump of the lsass.exe process and then decrypt it offline to retrieve password hashes. The project consists of two parts: `MemoryDumper.cpp`, which creates the encrypted memory dump, and `Decrypt.cpp`, which decrypts the encrypted dump file.
 
+At the time of release, the tool is able to dump the LSASS memory with Windows Defender on a Windows Server 2022.
+
+**Note:** This tool is not intended for use against EDRs, as they pose a different challenge that requires advanced evasion techniques. We are currently working on developing tools specifically for this purpose, so stay tuned for future updates.
+
 ## Prerequisites
 
 - Visual Studio (or another C++ compiler)
