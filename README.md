@@ -1,6 +1,6 @@
 # MemoryDumper
 
-MemoryDumper is a tool to create an encrypted memory dump of the lsass.exe process and then decrypt it for further analysis. The project consists of two parts: `MemoryDumper.cpp`, which creates the encrypted memory dump, and `Decrypt.cpp`, which decrypts the encrypted dump file.
+MemoryDumper is a tool to create an encrypted memory dump of the lsass.exe process and then decrypt it offline to retrieve password hashes. The project consists of two parts: `MemoryDumper.cpp`, which creates the encrypted memory dump, and `Decrypt.cpp`, which decrypts the encrypted dump file.
 
 ## Prerequisites
 
