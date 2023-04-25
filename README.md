@@ -54,3 +54,11 @@ MemoryDumper is a tool to create an encrypted memory dump of the lsass.exe proce
 5. The memory allocated by `CommandLineToArgvW` is freed, and the program exits.
 
 The MemoryDumper and Decrypt programs work together to create an encrypted memory dump of the lsass.exe process and then decrypt it for further analysis. The encryption and decryption processes use the AES algorithm with CBC mode to ensure the confidentiality of the memory dump.
+
+## Contributing
+
+Contributions are welcome! If you have any ideas or improvements, please submit a pull request or open an issue to discuss the changes.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE). Please see the [LICENSE](LICENSE) file for details.
