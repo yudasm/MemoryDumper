@@ -51,15 +51,11 @@ At the time of release, the tool is able to dump the LSASS memory with Windows D
 
 ### Decrypt.cpp
 
-1. The program starts by checking if an input file is provided as a command-line argument. If not, it prints an error message and exits.
+1. The key and initialization vector (IV) used for AES decryption are defined in the source code. These values should match the ones used in the MemoryDumper.cpp for encryption.
 
-2. It retrieves the wide command-line arguments using `CommandLineToArgvW` function.
+2. The `Decrypt` function is called with the input file path, key, and IV. It reads the encrypted input file and decrypts it using the AES decryption algorithm with CBC mode. The decrypted data is written to a new file named `decrypted.dmp`.
 
-3. The key and initialization vector (IV) used for AES decryption are defined in the source code. These values should match the ones used in the MemoryDumper.cpp for encryption.
-
-4. The `Decrypt` function is called with the input file path, key, and IV. It reads the encrypted input file and decrypts it using the AES decryption algorithm with CBC mode. The decrypted data is written to a new file named `decrypted.dmp`.
-
-5. The memory allocated by `CommandLineToArgvW` is freed, and the program exits.
+3. The memory allocated by `CommandLineToArgvW` is freed, and the program exits.
 
 The MemoryDumper and Decrypt programs work together to create an encrypted memory dump of the lsass.exe process and then decrypt it for further analysis. The encryption and decryption processes use the AES algorithm with CBC mode to ensure the confidentiality of the memory dump.
 
