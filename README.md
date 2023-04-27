@@ -6,6 +6,10 @@ At the time of release, the tool is able to dump the LSASS memory with Windows D
 
 **Note:** This tool is not intended for use against EDRs, as they pose a different challenge that requires advanced evasion techniques. We are currently working on developing tools specifically for this purpose, so stay tuned for future updates.
 
+**Authors**:
+Tzach Benita (https://www.linkedin.com/in/tzach-benita/)
+Yehuda Smirnov (https://www.linkedin.com/in/yehuda-smirnov/)
+
 ## Prerequisites
 
 - Visual Studio (or another C++ compiler)
